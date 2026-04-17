@@ -3,9 +3,11 @@
   const btn = document.getElementById('submit-btn');
   if (!form) return;
 
-  // TODO: Davide, sem doplň endpoint ClicqSales (nebo Zapier/Make webhook)
-  // který uloží lead. Pokud je prázdný, data se jen zalogují do konzole.
-  const ENDPOINT = 'https://formspree.io/f/mgorkepk';
+  // Hlavní CRM – ClicqSales (GoHighLevel) inbound webhook
+  const CLICQSALES_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/exLKIh7Z447f34opkeMo/webhook-trigger/0b6bf8cc-c0c5-4cb3-92da-ed9943b28265';
+
+  // Záloha + e-mail notifikace
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgorkepk';
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -15,8 +17,14 @@
       return;
     }
 
+    const fullName = form.name.value.trim();
+    const [firstName, ...rest] = fullName.split(/\s+/);
+    const lastName = rest.join(' ');
+
     const data = {
-      name: form.name.value.trim(),
+      name: fullName,
+      first_name: firstName || '',
+      last_name: lastName || '',
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
       position: form.position.value.trim(),
@@ -30,20 +38,22 @@
     btn.disabled = true;
     btn.querySelector('.cta__label').textContent = 'Odesílám…';
 
-    try {
-      if (ENDPOINT) {
-        const res = await fetch(ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        if (!res.ok) throw new Error('Request failed');
-      } else {
-        console.log('[lead]', data);
-        await new Promise(r => setTimeout(r, 400));
-      }
+    const send = (url) => fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
 
-      try { sessionStorage.setItem('softema_lead_name', data.name.split(' ')[0] || ''); } catch (_) {}
+    try {
+      const results = await Promise.allSettled([
+        send(CLICQSALES_WEBHOOK),
+        send(FORMSPREE_ENDPOINT)
+      ]);
+
+      const anyOk = results.some(r => r.status === 'fulfilled' && r.value.ok);
+      if (!anyOk) throw new Error('Both endpoints failed');
+
+      try { sessionStorage.setItem('softema_lead_name', firstName || ''); } catch (_) {}
       window.location.href = 'dekujeme.html';
     } catch (err) {
       btn.disabled = false;

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#ff8057" />
+<title>Díky, tvůj tip je u nás! | Softema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .thanks {
+    text-align: center;
+    padding: 20px 4px;
+  }
+  .thanks__emoji {
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 18px;
+    display: inline-block;
+    animation: pop .5s cubic-bezier(.2,.9,.3,1.4) both;
+  }
+  @keyframes pop {
+    0% { transform: scale(.4); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .thanks h1 {
+    font-size: clamp(28px, 7vw, 36px);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .thanks p {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 auto 14px;
+    max-width: 440px;
+  }
+  .thanks__card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+  }
+  .thanks__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--brand);
+    background: var(--brand-soft);
+    text-decoration: none;
+    border: 1.5px solid rgba(255, 128, 87, 0.3);
+    transition: background .15s, color .15s;
+  }
+  .thanks__cta:hover { background: var(--brand); color: #fff; }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <div class="brand__logo">
+        <img src="Logo-softema.webp" alt="Softema" class="brand__img" />
+      </div>
+      <span class="brand__event">Ecommerce Day · 18. 4. 2025</span>
+    </header>
+
+    <section class="thanks">
+      <div class="thanks__card">
+        <span class="thanks__emoji">🍀</span>
+        <h1 id="thanks-title">Díky, přijato!<br />Hodně štěstí</h1>
+        <p>Tvůj tip jsme si zapsali. Vyhrává ten, kdo trefí <strong>přesný nebo nejbližší</strong> počet korků – vyhlášení proběhne přímo na stánku Softema, tak nás sleduj!</p>
+
+        <hr style="border:0;border-top:1px solid var(--line);margin:20px 0;" />
+
+        <p style="text-align:left;">Než to celé začne, pojď se seznámit se <strong>Softema</strong>.</p>
+        <p style="text-align:left;">Jsme digitální agentura specializovaná na e-shopy a online marketing. Pomáháme e-shopům růst pomocí Google Ads, Meta Ads, SEO, e-mailingu a komplexní e-commerce strategie.</p>
+        <p style="text-align:left;">Pracujeme s ověřenými nástroji a máme certifikaci <strong>Google Partner</strong> i <strong>Shoptet Partner</strong>.</p>
+        <p style="text-align:left;">Chceš vědět, co umíme pro tvůj e-shop? Napiš nám nebo nás najdi přímo na stánku.</p>
+      </div>
+
+      <a class="thanks__cta" href="https://softema.cz" target="_blank" rel="noopener">
+        Mrkni na softema.cz →
+      </a>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__links">
+        <a href="https://softema.cz" target="_blank" rel="noopener">🌐 softema.cz</a>
+        <a href="mailto:info@softema.cz">📧 info@softema.cz</a>
+      </div>
+      <small>© 2025 Softema · Google Partner · Shoptet Partner</small>
+    </footer>
+  </main>
+
+  <script>
+    try {
+      const name = sessionStorage.getItem('softema_lead_name');
+      if (name) {
+        document.getElementById('thanks-title').innerHTML =
+          'Díky, ' + name.replace(/[<>]/g, '') + '!<br />Hodně štěstí';
+      }
+    } catch (_) {}
+  </script>
+</body>
+</html>

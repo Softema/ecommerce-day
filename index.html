@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#ff8057" />
+<title>Uhádni počet korků a vyhraj PLAUD! | Softema</title>
+<meta name="description" content="Tipni si počet korků ve váze na stánku Softema na Ecommerce Day a vyhraj PLAUD AI rekordér." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <div class="brand__logo">
+        <img src="Logo-softema.webp" alt="Softema" class="brand__img" />
+      </div>
+      <span class="brand__event">Ecommerce Day · 18. 4. 2025</span>
+    </header>
+
+    <section class="hero">
+      <div class="hero__badge">🍾 Soutěž na stánku</div>
+      <h1 class="hero__title">
+        Uhádni počet korků<br />
+        a vyhraj <span class="hero__title-accent">PLAUD</span>!
+      </h1>
+      <p class="hero__lead">
+        Vidíš tu vázu s korky? Zadej svůj tip a nech nám kontakt.
+      </p>
+    </section>
+
+    <div class="winner-rule">
+      <div class="winner-rule__icon">🏆</div>
+      <div class="winner-rule__text">
+        <strong>Kdo vyhraje?</strong>
+        <span>Ten, kdo tipne <em>přesný počet</em> korků – <em>nebo bude nejblíže</em>.</span>
+      </div>
+    </div>
+
+    <section class="card">
+      <form id="lead-form" class="form" novalidate>
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">Jméno a příjmení <em>*</em></span>
+            <input type="text" name="name" autocomplete="name" required placeholder="Jan Novák" />
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">E-mail <em>*</em></span>
+            <input type="email" name="email" autocomplete="email" required inputmode="email" placeholder="jan@firma.cz" />
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">Telefon <em>*</em></span>
+            <input type="tel" name="phone" autocomplete="tel" required inputmode="tel" placeholder="+420 777 123 456" />
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">Pozice ve firmě <em>*</em></span>
+            <input type="text" name="position" autocomplete="organization-title" required placeholder="Marketing manager" />
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">Web <em>*</em></span>
+            <input type="text" name="website" autocomplete="url" required placeholder="např. mujweb.cz" />
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label class="field field--guess">
+            <span class="field__label">🧠 Můj tip – počet korků <em>*</em></span>
+            <input type="number" name="corks" min="1" max="9999" step="1" required inputmode="numeric" placeholder="např. 237" />
+          </label>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required />
+          <span>Souhlasím se zpracováním osobních údajů pro účely soutěže a kontaktování ze strany Softema.</span>
+        </label>
+
+        <button type="submit" class="cta" id="submit-btn">
+          <span class="cta__label">Tipuji a chci vyhrát!</span>
+          <span class="cta__arrow" aria-hidden="true">→</span>
+        </button>
+
+        <p class="form__note">Vyhlášení výherce proběhne přímo na stánku Softema.</p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__links">
+        <a href="https://softema.cz" target="_blank" rel="noopener">🌐 softema.cz</a>
+        <a href="mailto:info@softema.cz">📧 info@softema.cz</a>
+      </div>
+      <small>© 2025 Softema · Google Partner · Shoptet Partner</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

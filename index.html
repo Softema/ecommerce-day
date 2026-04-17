@@ -41,10 +41,14 @@
 
     <section class="card">
       <form id="lead-form" class="form" novalidate>
-        <div class="form__row">
+        <div class="form__row form__row--split">
           <label class="field">
-            <span class="field__label">Jméno a příjmení <em>*</em></span>
-            <input type="text" name="name" autocomplete="name" required placeholder="Jan Novák" />
+            <span class="field__label">Jméno <em>*</em></span>
+            <input type="text" name="first_name" autocomplete="given-name" required placeholder="Jan" />
+          </label>
+          <label class="field">
+            <span class="field__label">Příjmení <em>*</em></span>
+            <input type="text" name="last_name" autocomplete="family-name" required placeholder="Novák" />
           </label>
         </div>
 
@@ -58,7 +62,7 @@
         <div class="form__row">
           <label class="field">
             <span class="field__label">Telefon <em>*</em></span>
-            <input type="tel" name="phone" autocomplete="tel" required inputmode="tel" placeholder="+420 777 123 456" />
+            <input type="tel" name="phone" autocomplete="tel" required inputmode="tel" minlength="6" placeholder="+420 777 123 456" />
           </label>
         </div>
 

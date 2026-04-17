@@ -193,6 +193,13 @@ body {
   flex-direction: column;
 }
 
+@media (min-width: 420px) {
+  .form__row--split {
+    flex-direction: row;
+  }
+  .form__row--split .field { flex: 1; }
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -264,6 +271,21 @@ body {
   accent-color: var(--brand);
   flex-shrink: 0;
 }
+
+.consent a {
+  color: var(--brand);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.consent a:hover { color: var(--brand-dark); }
+
+.footer a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+
+.footer a:hover { color: var(--brand); }
 
 /* CTA */
 .cta {

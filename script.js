@@ -17,21 +17,20 @@
       return;
     }
 
-    const fullName = form.name.value.trim();
-    const [firstName, ...rest] = fullName.split(/\s+/);
-    const lastName = rest.join(' ');
+    const firstName = form.first_name.value.trim();
+    const lastName = form.last_name.value.trim();
 
     const data = {
-      name: fullName,
-      first_name: firstName || '',
-      last_name: lastName || '',
+      first_name: firstName,
+      last_name: lastName,
+      name: firstName + ' ' + lastName,
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
       position: form.position.value.trim(),
       website: form.website.value.trim(),
       corks: Number(form.corks.value),
       consent: form.consent.checked,
-      source: 'Ecommerce Day 2025 – stánek Softema',
+      source: 'Ecommerce Day 2026 – stánek Softema',
       submitted_at: new Date().toISOString()
     };
 
@@ -53,7 +52,7 @@
       const anyOk = results.some(r => r.status === 'fulfilled' && r.value.ok);
       if (!anyOk) throw new Error('Both endpoints failed');
 
-      try { sessionStorage.setItem('softema_lead_name', firstName || ''); } catch (_) {}
+      try { sessionStorage.setItem('softema_lead_name', firstName); } catch (_) {}
       window.location.href = 'dekujeme.html';
     } catch (err) {
       btn.disabled = false;

@@ -8,16 +8,69 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="styles.css" />
 <style>
-  .thanks {
-    text-align: center;
-    padding: 20px 4px;
+  :root {
+    --brand: #ff8057;
+    --brand-dark: #e5673e;
+    --brand-soft: #fff1ea;
+    --ink: #1a1410;
+    --ink-soft: #5a4a41;
+    --line: #efe4dc;
+    --radius: 18px;
+    --bg: #ffffff;
   }
-  .thanks__emoji {
-    font-size: 72px;
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 20px 18px 48px;
+  }
+
+  /* Header */
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .brand__img { height: 36px; width: auto; display: block; }
+  .brand__event {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+  }
+
+  /* Hero confirmed */
+  .confirmed {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 16px;
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.08);
+  }
+  .confirmed__emoji {
+    font-size: 56px;
     line-height: 1;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     display: inline-block;
     animation: pop .5s cubic-bezier(.2,.9,.3,1.4) both;
   }
@@ -25,66 +78,112 @@
     0% { transform: scale(.4); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
   }
-  .thanks h1 {
-    font-size: clamp(28px, 7vw, 36px);
-    line-height: 1.15;
+  .confirmed__title {
+    font-size: clamp(26px, 7vw, 34px);
     font-weight: 800;
+    line-height: 1.15;
     letter-spacing: -0.02em;
-    margin: 0 0 14px;
+    margin: 0 0 10px;
+    color: var(--ink);
   }
-  .thanks p {
-    font-size: 16px;
-    line-height: 1.55;
+  .confirmed__sub {
+    font-size: 15px;
+    line-height: 1.6;
     color: var(--ink-soft);
-    margin: 0 auto 14px;
-    max-width: 440px;
+    margin: 0;
   }
-  .thanks__card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 28px 22px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--line);
-    margin-bottom: 18px;
-  }
-  .thanks__cta {
+  .confirmed__sub strong { font-weight: 700; color: var(--ink); }
+
+  /* Instagram button inside confirmed */
+  .confirmed__ig {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 22px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--brand);
-    background: var(--brand-soft);
-    text-decoration: none;
-    border: 1.5px solid rgba(255, 128, 87, 0.3);
-    transition: background .15s, color .15s;
-  }
-  .thanks__cta:hover { background: var(--brand); color: #fff; }
-
-  .thanks__ig {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
+    margin-top: 20px;
     padding: 12px 20px;
     border-radius: 999px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
     color: #fff;
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    box-shadow: 0 8px 20px -8px rgba(220, 39, 67, 0.5);
+    box-shadow: 0 6px 16px -6px rgba(220, 39, 67, 0.45);
     transition: transform .15s, box-shadow .2s;
   }
-  .thanks__ig:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 24px -8px rgba(220, 39, 67, 0.6);
+  .confirmed__ig:hover { transform: translateY(-1px); }
+
+  /* Info card */
+  .info-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    margin-bottom: 16px;
   }
-  .thanks__ig-icon {
-    flex-shrink: 0;
+  .info-card__title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand);
+    margin: 0 0 10px;
   }
+  .info-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .info-card p:last-child { margin-bottom: 0; }
+  .info-card p strong { color: var(--ink); font-weight: 700; }
+
+  /* CTA button */
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 17px;
+    font-weight: 800;
+    font-family: inherit;
+    color: #fff;
+    background: var(--brand);
+    border: 0;
+    border-radius: var(--radius);
+    text-decoration: none;
+    box-shadow: 0 12px 28px -8px rgba(255, 128, 87, 0.6);
+    transition: background .15s, transform .1s;
+    margin-bottom: 16px;
+  }
+  .cta-btn:hover { background: var(--brand-dark); }
+  .cta-btn:active { transform: translateY(1px); }
+  .cta-btn__arrow { font-size: 20px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    padding: 8px;
+  }
+  .footer__links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .footer__links a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .footer__links a:hover { color: var(--brand); }
+  .footer small { font-size: 11px; opacity: .65; }
+  .footer a { color: var(--ink-soft); text-decoration: underline; }
+  .footer a:hover { color: var(--brand); }
 </style>
 </head>
 <body>
@@ -96,31 +195,33 @@
       <span class="brand__event">Ecommerce Day · 18. 4. 2026</span>
     </header>
 
-    <section class="thanks">
-      <div class="thanks__card">
-        <span class="thanks__emoji">🍀</span>
-        <h1 id="thanks-title">Díky, přijato!<br />Hodně štěstí</h1>
-        <p>Tvůj tip jsme si zapsali. Vyhrává ten, kdo trefí <strong>přesný nebo nejbližší</strong> počet korků – vyhlášení proběhne <strong>online na Instagramu Softema</strong> a výsledek ti dáme vědět i e-mailem.</p>
-
-        <a class="thanks__ig" href="https://www.instagram.com/softema_creative/" target="_blank" rel="noopener">
-          <svg class="thanks__ig-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23C2.27 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.2 8.8 2.2 12 2.2M12 0C8.74 0 8.33 0 7.05.07 5.78.13 4.9.33 4.14.63c-.8.3-1.47.72-2.13 1.38-.66.66-1.08 1.34-1.38 2.13C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s0 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.8.72 1.47 1.38 2.13.66.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 24 8.74 24 12 24s3.67 0 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.3 1.47-.72 2.13-1.38.66-.66 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.07-1.28.07-1.69.07-4.95s0-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.8-.72-1.47-1.38-2.13-.66-.66-1.34-1.08-2.13-1.38-.76-.3-1.64-.5-2.91-.56C15.67 0 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-11.88a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/>
-          </svg>
-          <span>Sleduj <strong>@softema_creative</strong></span>
-        </a>
-
-        <hr style="border:0;border-top:1px solid var(--line);margin:20px 0;" />
-
-        <p style="text-align:left;">Než to celé začne, pojď se seznámit se <strong>Softema</strong>.</p>
-        <p style="text-align:left;">Jsme digitální agentura specializovaná na e-shopy a online marketing. Pomáháme e-shopům růst pomocí Google Ads, Meta Ads, SEO, e-mailingu a komplexní e-commerce strategie.</p>
-        <p style="text-align:left;">Pracujeme s ověřenými nástroji a máme certifikaci <strong>Google Partner</strong> i <strong>Shoptet Partner</strong>.</p>
-        <p style="text-align:left;">Chceš vědět, co umíme pro tvůj e-shop? Napiš nám nebo nás najdi přímo na stánku.</p>
-      </div>
-
-      <a class="thanks__cta" href="https://softema.cz" target="_blank" rel="noopener">
-        Mrkni na softema.cz →
+    <section class="confirmed">
+      <span class="confirmed__emoji">🍀</span>
+      <h1 class="confirmed__title" id="thanks-title">
+        Tvůj tip jsme zapsali!<br />Hodně štěstí
+      </h1>
+      <p class="confirmed__sub">
+        Vyhrává ten, kdo trefí <strong>přesný nebo nejbližší</strong> počet korků.<br />
+        <strong>Výsledek vyhlásíme online na Instagramu a dáme ti vědět e-mailem.</strong>
+      </p>
+      <a class="confirmed__ig" href="https://www.instagram.com/softema_creative/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+          <path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23C2.27 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.2 8.8 2.2 12 2.2M12 0C8.74 0 8.33 0 7.05.07 5.78.13 4.9.33 4.14.63c-.8.3-1.47.72-2.13 1.38-.66.66-1.08 1.34-1.38 2.13C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s0 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.8.72 1.47 1.38 2.13.66.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 24 8.74 24 12 24s3.67 0 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.3 1.47-.72 2.13-1.38.66-.66 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.07-1.28.07-1.69.07-4.95s0-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.8-.72-1.47-1.38-2.13-.66-.66-1.34-1.08-2.13-1.38-.76-.3-1.64-.5-2.91-.56C15.67 0 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-11.88a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/>
+        </svg>
+        Sleduj @softema_creative
       </a>
     </section>
+
+    <div class="info-card">
+      <p class="info-card__title">O Softema</p>
+      <p>Jsme digitální agentura specializovaná na e-shopy a online marketing. Pomáháme e-shopům růst pomocí <strong>Google Ads, Meta Ads, SEO</strong>, e-mailingu a komplexní e-commerce strategie.</p>
+      <p>Máme certifikaci <strong>Google Partner</strong> i <strong>Shoptet Partner</strong>. Chceš vědět, co umíme pro tvůj e-shop?</p>
+    </div>
+
+    <a class="cta-btn" href="https://softema.cz" target="_blank" rel="noopener">
+      Mrkni na softema.cz
+      <span class="cta-btn__arrow">→</span>
+    </a>
 
     <footer class="footer">
       <div class="footer__links">
@@ -128,7 +229,9 @@
         <a href="mailto:info@softema.cz">📧 info@softema.cz</a>
       </div>
       <small>© 2026 Softema · Google Partner · Shoptet Partner</small>
-      <small style="display:block;margin-top:6px;"><a href="https://softema.cz/zasady-ochrany-osobnich-udaju-a-informace-o-zpracovani-osobnich-udaju/" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a></small>
+      <small style="display:block;margin-top:6px;">
+        <a href="https://softema.cz/zasady-ochrany-osobnich-udaju-a-informace-o-zpracovani-osobnich-udaju/" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>
+      </small>
     </footer>
   </main>
 
@@ -137,7 +240,7 @@
       const name = sessionStorage.getItem('softema_lead_name');
       if (name) {
         document.getElementById('thanks-title').innerHTML =
-          'Díky, ' + name.replace(/[<>]/g, '') + '!<br />Hodně štěstí';
+          'Tvůj tip jsme zapsali,<br />' + name.replace(/[<>]/g, '') + '! 🎉';
       }
     } catch (_) {}
   </script>
